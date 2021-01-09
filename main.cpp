@@ -13,8 +13,9 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include "SearchTree.h"
+#include "SearchTree.cpp"
 using namespace std;
+
 
 
 // //-------------------------- buildTree --------------------------------------
@@ -66,8 +67,9 @@ int main() {
 		return 1;
 	}
 
+	
 	// test copy constructor, operator=, self-assignment for compilation
-	SearchTree T //, T2, duplicate;
+//	SearchTree T, T2, duplicate;
 //	buildTree(infile, T);
 
 // 	SearchTree first(T);

@@ -9,20 +9,22 @@
 #include "SearchTree.h"
 #include <iostream>
 
-
-SearchTree::SearchTree(){
+SearchTree::SearchTree()
+{
     root = nullptr;
-
 }
 
-SearchTree::~SearchTree(){
+SearchTree::~SearchTree()
+{
     clear(root);
-
 }
 
-void SearchTree::clear(Node *&node){
+void SearchTree::clear(Node *&node)
+{
     cout << "you have cleared all nodes" << endl;
-
 }
 
-
+bool SearchTree::insert(Comparable *c)
+{
+    return true;
+}
