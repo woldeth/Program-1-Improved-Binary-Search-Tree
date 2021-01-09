@@ -24,7 +24,7 @@ void SearchTree::clear(Node *&node)
     cout << "you have cleared all nodes" << endl;
 }
 
-bool SearchTree::insert(Comparable *c)
+bool SearchTree::insert(Comparable * c)
 {
     return true;
 }

@@ -67,10 +67,13 @@ int main() {
 		return 1;
 	}
 
-	
 	// test copy constructor, operator=, self-assignment for compilation
-//	SearchTree T, T2, duplicate;
-//	buildTree(infile, T);
+	SearchTree T; //, T2, duplicate;
+	//buildTree(infile, T);
+
+	Comparable* ptr = new Comparable;
+	infile >> *ptr;
+
 
 // 	SearchTree first(T);
 // 	duplicate = duplicate = T;
