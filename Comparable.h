@@ -15,7 +15,7 @@ using namespace std;
 
 class Comparable
 {
-protected:
+private:
     char c;
 
 public:
@@ -26,4 +26,6 @@ public:
     friend ostream &operator<<(ostream &output, Comparable &I);
     friend istream &operator>>(istream &input, Comparable &I);
     const void itemDisplay() const;
+    char getItem();
+    const bool setItem(const char newC);
 };

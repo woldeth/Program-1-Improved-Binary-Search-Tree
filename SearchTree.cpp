@@ -4,6 +4,7 @@
 // File Name: SearchTree.cpp
 // Title: PROGRAM 4
 // Description:
+//
 // ------------------------------------------------------------------------//
 
 #include "SearchTree.h"
@@ -14,14 +15,9 @@ SearchTree::SearchTree() : root(nullptr)
 }
 
 //STOPPED AT COPY CONSTRUCTOR!
-SearchTree::SearchTree(const SearchTree &org){
-    if (org.root == nullptr){
-        root = nullptr;
-    }else{
-
-        root->count = org.root->count;
-
-    }
+SearchTree::SearchTree(const SearchTree &org)
+{
+    root = copyPrivate(org.root);
 }
 
 SearchTree::~SearchTree()
@@ -29,21 +25,61 @@ SearchTree::~SearchTree()
     clear(root);
 }
 
+Node *SearchTree::copyPrivate(const Node *copyNode)
+{
+    // if node is empty return
+    if (copyNode == nullptr)
+    {
+        return nullptr;
+    }
+
+    Comparable *newItem = new Comparable;
+    newItem->setItem(copyNode->item->getItem());
+    Node *newNode = new Node(newItem);
+
+    newNode->count = copyNode->count; // copy primative data types
+
+    newNode->left = copyPrivate(copyNode->left); //
+    newNode->right = copyPrivate(copyNode->right);
+
+    return newNode;
+}
+
 void SearchTree::clear(Node *&node)
 {
     cout << "you have cleared all nodes" << endl;
 }
 
-bool SearchTree::insert(Comparable *ptr)
+void SearchTree::makeEmpty()
 {
-    insertPrivate(ptr, root);
-
-    return true;
+    makeEmptyPrivate(root);
 }
 
-void SearchTree::insertPrivate(Comparable *ptr, Node *&node)
+void SearchTree::makeEmptyPrivate(Node *&node)
 {
+    if (node == nullptr)
+    {
+        return;
+    }
 
+    makeEmptyPrivate(node->left);
+    makeEmptyPrivate(node->right);
+
+    delete node;
+    node = nullptr;
+}
+
+bool SearchTree::insert(Comparable *ptr)
+{
+    bool flag = false;
+    insertPrivate(ptr, root, flag);
+
+    return flag;
+}
+
+void SearchTree::insertPrivate(Comparable *ptr, Node *&node, bool &flag)
+{
+    
     // Comparable obj1 = *ptr;
     // Comparable obj2 = *(node->item);
 
@@ -52,20 +88,24 @@ void SearchTree::insertPrivate(Comparable *ptr, Node *&node)
     {
         Node *newNode = new Node(ptr);
         node = newNode;
+        flag = true;
         return;
     }
     else if (*ptr == *(node->item)) // char is already in tree
     {
         node->count = node->count + 1;
+        
     }
     else if (*ptr < *(node->item))
     {
-        insertPrivate(ptr, node->left);
+        insertPrivate(ptr, node->left, flag);
     }
     else if (*ptr > *(node->item))
     {
-        insertPrivate(ptr, node->right);
+        insertPrivate(ptr, node->right, flag);
     }
+
+
 }
 
 void SearchTree::inOrderPrivate(const Node *const &node) const
@@ -78,8 +118,7 @@ void SearchTree::inOrderPrivate(const Node *const &node) const
 
     //inorder traversal
     inOrderPrivate(node->left);
-    node->item->itemDisplay();
-    cout << " " << node->count << endl;
+    cout << node->item->getItem() << " " << node->count << endl;
     inOrderPrivate(node->right);
 }
 
@@ -89,3 +128,16 @@ ostream &operator<<(ostream &output, const SearchTree &I)
 
     return output;
 }
+
+SearchTree &SearchTree::operator=(const SearchTree &rhs)
+{
+    if (this != &rhs)
+    {                
+        this->makeEmpty();
+        this->root = copyPrivate(rhs.root);
+    }
+
+    return *this;
+
+}
+

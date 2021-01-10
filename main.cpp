@@ -42,6 +42,7 @@ void buildTree(ifstream &infile, SearchTree &T) {
 		}
 
 		bool success = T.insert(ptr);
+		cout << success << endl;
 		if (!success) {						// must be a repeated item, so it was not inserted
 			delete ptr;						// deallocate if not inserted 
 		}
@@ -71,15 +72,12 @@ int main() {
 	}
 
 	// test copy constructor, operator=, self-assignment for compilation
-	SearchTree T; //, T2, duplicate;
+	SearchTree T, T2, duplicate;
 	buildTree(infile, T);
-	cout << T;
 
-
-
-// 	SearchTree first(T);
-// 	duplicate = duplicate = T;
-// 	duplicate.makeEmpty();
+	SearchTree first(T);
+	duplicate = duplicate = T;
+	duplicate.makeEmpty();
 
 // 	// test operator<<
 // 	cout << "Frequency table:  " << endl;

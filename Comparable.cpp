@@ -38,3 +38,13 @@ istream &operator>>(istream &input, Comparable &I){
 const void Comparable::itemDisplay() const{
     cout << c;
 }
+
+char Comparable::getItem() {
+    return c;
+}
+
+const bool Comparable::setItem(const char newC) {
+    c = newC;
+    return true;
+}
+
