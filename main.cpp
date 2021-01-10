@@ -70,13 +70,20 @@ int main() {
 
 	//test copy constructor, operator=, self-assignment for compilation
 	SearchTree T, T2, duplicate;
-	// buildTree(infile, T);
+	buildTree(infile, T);
 
-	// SearchTree first(T);
-	// duplicate = duplicate = T;
-	// duplicate.makeEmpty();
+	SearchTree first(T);
+	cout << (first != T) << " - True or False " << endl;
+	cout << first <<endl;
+	cout << T << endl;
+	
+	duplicate = duplicate = T;
+	duplicate.makeEmpty();
+	cout << (T != duplicate) << " - True or False " << endl;
+	cout << duplicate << endl;
+	cout << T << endl;
 
-// 	// test operator<<
+	//test operator<<
 	// cout << "Frequency table:  " << endl;
 	// cout << T;
 	// cout << endl;
@@ -85,23 +92,23 @@ int main() {
 	// the syntax is a bit strange here, since the only ways to create new
 	// Comparables are using operator>> (and constructors supplied by the compiler)
 
-	// string char1 = "f";
-	// Comparable in1;
-	// stringstream s1(char1);
-	// s1 >> in1;
+	string char1 = "f";
+	Comparable in1;
+	stringstream s1(char1);
+	s1 >> in1;
 	
 
-	// string char2 = "x";
-	// Comparable in2;
-	// stringstream s2(char2);
-	// s2 >> in2;
+	string char2 = "x";
+	Comparable in2;
+	stringstream s2(char2);
+	s2 >> in2;
 
 
 	// test retrieve, depth, descendants
-	//const Comparable *out1 = T.retrieve(in1);
-	//cout << "Retrieve - " << char1 << ":          " << (out1 != nullptr ? "found" : "not found")
-	//	<< endl;
-	// const Comparable *out2 = T.retrieve(in2);
+	// const Comparable *out1 = nullptr; //T.retrieve(in1);
+	// cout << "Retrieve - " << char1 << ":          " << (out1 != nullptr ? "found" : "not found")
+	// 	<< endl;
+	// const Comparable *out2 = nullptr; //T.retrieve(in2);
 	// cout << "Retrieve - " << char2 << ":          " << (out2 != nullptr ? "found" : "not found")
 	// 	<< endl;
 	// cout << "Depth of - " << char1 << ":          " << T.depth(in1) << endl;

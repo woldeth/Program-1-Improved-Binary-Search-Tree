@@ -1,1 +1,1 @@
-void insertPrivate(Comparable *ptr, Node *&node)
+T, T2, duplicate;

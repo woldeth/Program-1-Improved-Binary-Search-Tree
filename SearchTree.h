@@ -22,7 +22,6 @@ struct Node
   Node *left;
   Node *right;
   Node(Comparable *i) : item(i), count(1), left(nullptr), right(nullptr) {}
-
 };
 
 class SearchTree
@@ -32,10 +31,9 @@ private:
   Node *root;
   void insertPrivate(Comparable *ptr, Node *&node, bool &flag);
   void inOrderPrivate(const Node *const &node) const; // inorder traverals
-  Node *copyPrivate(const Node *copyNode);   // inoder taversal 
-  void makeEmptyPrivate(Node *&node); // post order traversal
-  
-  
+  Node *copyPrivate(const Node *copyNode);            // inoder taversal
+  void makeEmptyPrivate(Node *&node);                 // post order traversal
+  void eePrivate(const Node *lhsNode, const Node *rhsNode, bool &sameTree);
 
 public:
   //Constructors and destructor
@@ -45,9 +43,9 @@ public:
   void clear(Node *&node);           // Destroy tree for destuctor
 
   //Overloaded operators
-  SearchTree &operator=(const SearchTree &rhs);               //Assignment of one tree to another (Deep copy)
-  // bool operator==(const SearchTree &rhs);                     //Bool to see if object have all the same node values
-  // bool operator!=(const SearchTree &rhs);                     //Bool to see if object do not equal each other
+  SearchTree &operator=(const SearchTree &rhs); //Assignment of one tree to another (Deep copy)
+  bool operator==(const SearchTree &rhs);                     //Bool to see if object have all the same node values
+  bool operator!=(const SearchTree &rhs);                     //Bool to see if object do not equal each other
   friend ostream &operator<<(ostream &output, const SearchTree &I); // print out the Nodes item and frequency
 
   //Mutators

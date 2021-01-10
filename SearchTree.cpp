@@ -39,7 +39,7 @@ Node *SearchTree::copyPrivate(const Node *copyNode)
 
     newNode->count = copyNode->count; // copy primative data types
 
-    newNode->left = copyPrivate(copyNode->left); //
+    newNode->left = copyPrivate(copyNode->left);
     newNode->right = copyPrivate(copyNode->right);
 
     return newNode;
@@ -47,7 +47,7 @@ Node *SearchTree::copyPrivate(const Node *copyNode)
 
 void SearchTree::clear(Node *&node)
 {
-    cout << "you have cleared all nodes" << endl;
+    //cout << "you have cleared all nodes" << endl;
 }
 
 void SearchTree::makeEmpty()
@@ -135,5 +135,51 @@ SearchTree &SearchTree::operator=(const SearchTree &rhs)
     }
 
     return *this;
+}
+
+bool SearchTree::operator==(const SearchTree &rhs)
+{
+    bool sameTree = true;
+    eePrivate(root, rhs.root, sameTree);
+    return sameTree;
+}
+
+void SearchTree::eePrivate(const Node *lhsNode, const Node *rhsNode, bool &sameTree)
+{
+    if (lhsNode == nullptr && rhsNode != nullptr)
+    {
+        sameTree = false;
+    }
+
+    if (lhsNode != nullptr && rhsNode == nullptr)
+    {
+        sameTree = false;
+    }
+
+    if (lhsNode == nullptr || rhsNode == nullptr)
+    {
+        return;
+    }
+
+    //inorder traversal
+    eePrivate(lhsNode->left, rhsNode->left, sameTree);
+
+    if (lhsNode->count != rhsNode->count)
+    {
+
+        sameTree = false;
+    }
+    else if (*(lhsNode->item) != *(lhsNode->item))
+    {
+
+        sameTree = false;
+    }
+
+    eePrivate(lhsNode->right, rhsNode->right, sameTree);
+}
+
+bool SearchTree::operator!=(const SearchTree &rhs)
+{
+    return !(*this == rhs);
 
 }
