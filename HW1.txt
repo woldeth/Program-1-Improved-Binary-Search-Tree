@@ -1,1 +1,2 @@
-This course is a continuation of CSS 501 and covers advanced data structures including trees, balanced trees, heaps, graphs, and hash tables along with associated algorithms. Students learn how to analyze a problem and design and implement a solution using object-oriented design and programming with a focus on inheritance and polymorphism. Advanced data structures are incorporated into their software implementations. Good software engineering practices are used throughout. Formal notation for a programming language is introduced through automata theory.
+a b c d e f g h i j k l m no op g je r se t u v
+1111111 11111    11111 

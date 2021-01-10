@@ -13,7 +13,10 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+
 #include "SearchTree.cpp"
+#include "Comparable.cpp"
+
 using namespace std;
 
 
@@ -25,26 +28,26 @@ using namespace std;
 // //                   of the unprocessed Comparables remaining in infile, 
 // //                   (in addition to whatever was previously stored in T)
 
-// void buildTree(ifstream &infile, SearchTree &T) {
+void buildTree(ifstream &infile, SearchTree &T) {
 
 // 	// Loop until end of file
-// 	while (!infile.eof()) {
+	while (!infile.eof()) {
 
-// 		// Get next Comparable using operator>>
-// 		Comparable* ptr = new Comparable;
-// 		infile >> *ptr;
-// 		if (infile.eof()) {
-// 			delete ptr;
-// 			return;
-// 		}
+		// Get next Comparable using operator>>
+		Comparable* ptr = new Comparable;
+		infile >> *ptr;
+		if (infile.eof()) {
+			delete ptr;
+			return;
+		}
 
-// 		bool success = T.insert(ptr);
-// 		if (!success) {						// must be a repeated item, so it was not inserted
-// 			delete ptr;						// deallocate if not inserted 
-// 		}
-// 		ptr = nullptr;
-// 	}
-// }
+		bool success = T.insert(ptr);
+		if (!success) {						// must be a repeated item, so it was not inserted
+			delete ptr;						// deallocate if not inserted 
+		}
+		ptr = nullptr;
+	}
+}
 
 
 
@@ -69,10 +72,9 @@ int main() {
 
 	// test copy constructor, operator=, self-assignment for compilation
 	SearchTree T; //, T2, duplicate;
-	//buildTree(infile, T);
+	buildTree(infile, T);
+	cout << T;
 
-	Comparable* ptr = new Comparable;
-	infile >> *ptr;
 
 
 // 	SearchTree first(T);

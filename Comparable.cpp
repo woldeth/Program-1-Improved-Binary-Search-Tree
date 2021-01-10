@@ -31,8 +31,10 @@ ostream &operator<<(ostream &output, Comparable &I){
 }
 
 istream &operator>>(istream &input, Comparable &I){
-    //I.c = input.get();
-    //cout << I.c;
-    cout << "print";
+    input >> I.c;
     return input;
+}
+
+const void Comparable::itemDisplay() const{
+    cout << c;
 }

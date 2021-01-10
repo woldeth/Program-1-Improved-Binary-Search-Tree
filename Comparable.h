@@ -15,14 +15,15 @@ using namespace std;
 
 class Comparable
 {
-private:
+protected:
     char c;
 
-protected:
+public:
     friend bool operator==(const Comparable& lhs, const Comparable& rhs);
     friend bool operator!=(const Comparable& lhs, const Comparable& rhs);
     friend bool operator<(const Comparable& lhs, const Comparable& rhs);
     friend bool operator>(const Comparable& lhs, const Comparable& rhs);
     friend ostream &operator<<(ostream &output, Comparable &I);
     friend istream &operator>>(istream &input, Comparable &I);
+    const void itemDisplay() const;
 };
