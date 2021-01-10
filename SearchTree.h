@@ -23,14 +23,6 @@ struct Node
   Node *right;
   Node(Comparable *i) : item(i), count(1), left(nullptr), right(nullptr) {}
 
-  // Node &operator=(const Node &rhs)
-  // {
-  //   this->item = rhs.item;
-  //   this->count = rhs.count;
-  //   this->left = rhs.left;
-  //   this->right = rhs.right;
-  //   return *this;
-  // }
 };
 
 class SearchTree
@@ -39,9 +31,11 @@ class SearchTree
 private:
   Node *root;
   void insertPrivate(Comparable *ptr, Node *&node, bool &flag);
-  void inOrderPrivate(const Node *const &node) const;
-  Node *copyPrivate(const Node *copyNode);
-  void makeEmptyPrivate(Node *&node);
+  void inOrderPrivate(const Node *const &node) const; // inorder traverals
+  Node *copyPrivate(const Node *copyNode);   // inoder taversal 
+  void makeEmptyPrivate(Node *&node); // post order traversal
+  
+  
 
 public:
   //Constructors and destructor
@@ -63,7 +57,7 @@ public:
   void makeEmpty(); // removes and deallocates all of the data from the tree (Tree still there)
 
   //Accessors
-  // const Comparable *retrieve(const Comparable &) const;
+  // const Comparable *retrieve(const Comparable & c1) const;
   // int depth(const Comparable &) const;
   // int descendants(const Comparable &) const;
 };

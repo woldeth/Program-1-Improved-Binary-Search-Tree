@@ -79,7 +79,7 @@ bool SearchTree::insert(Comparable *ptr)
 
 void SearchTree::insertPrivate(Comparable *ptr, Node *&node, bool &flag)
 {
-    
+
     // Comparable obj1 = *ptr;
     // Comparable obj2 = *(node->item);
 
@@ -94,7 +94,6 @@ void SearchTree::insertPrivate(Comparable *ptr, Node *&node, bool &flag)
     else if (*ptr == *(node->item)) // char is already in tree
     {
         node->count = node->count + 1;
-        
     }
     else if (*ptr < *(node->item))
     {
@@ -104,8 +103,6 @@ void SearchTree::insertPrivate(Comparable *ptr, Node *&node, bool &flag)
     {
         insertPrivate(ptr, node->right, flag);
     }
-
-
 }
 
 void SearchTree::inOrderPrivate(const Node *const &node) const
@@ -132,12 +129,11 @@ ostream &operator<<(ostream &output, const SearchTree &I)
 SearchTree &SearchTree::operator=(const SearchTree &rhs)
 {
     if (this != &rhs)
-    {                
-        this->makeEmpty();
+    {
+        this->makeEmpty(); // clear lhs
         this->root = copyPrivate(rhs.root);
     }
 
     return *this;
 
 }
-

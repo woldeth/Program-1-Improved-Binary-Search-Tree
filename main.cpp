@@ -42,7 +42,6 @@ void buildTree(ifstream &infile, SearchTree &T) {
 		}
 
 		bool success = T.insert(ptr);
-		cout << success << endl;
 		if (!success) {						// must be a repeated item, so it was not inserted
 			delete ptr;						// deallocate if not inserted 
 		}
@@ -62,8 +61,6 @@ void buildTree(ifstream &infile, SearchTree &T) {
 
 int main() {
 
-	cout << "This is working" << endl;
-
 	// open file 
 	ifstream infile("HW1.txt");
 	if (!infile) {
@@ -71,44 +68,46 @@ int main() {
 		return 1;
 	}
 
-	// test copy constructor, operator=, self-assignment for compilation
+	//test copy constructor, operator=, self-assignment for compilation
 	SearchTree T, T2, duplicate;
-	buildTree(infile, T);
+	// buildTree(infile, T);
 
-	SearchTree first(T);
-	duplicate = duplicate = T;
-	duplicate.makeEmpty();
+	// SearchTree first(T);
+	// duplicate = duplicate = T;
+	// duplicate.makeEmpty();
 
 // 	// test operator<<
-// 	cout << "Frequency table:  " << endl;
-// 	cout << T;
-// 	cout << endl;
+	// cout << "Frequency table:  " << endl;
+	// cout << T;
+	// cout << endl;
 
-// 	// create some Comparables to retrieve
-// 	// the syntax is a bit strange here, since the only ways to create new
-// 	// Comparables are using operator>> (and constructors supplied by the compiler)
+	// create some Comparables to retrieve
+	// the syntax is a bit strange here, since the only ways to create new
+	// Comparables are using operator>> (and constructors supplied by the compiler)
 
-// 	string char1 = "f";
-// 	Comparable in1;
-// 	stringstream s1(char1);
-// 	s1 >> in1;
+	// string char1 = "f";
+	// Comparable in1;
+	// stringstream s1(char1);
+	// s1 >> in1;
+	
 
-// 	string char2 = "x";
-// 	Comparable in2;
-// 	stringstream s2(char2);
-// 	s2 >> in2;
+	// string char2 = "x";
+	// Comparable in2;
+	// stringstream s2(char2);
+	// s2 >> in2;
 
-// 	// test retrieve, depth, descendants
-// 	const Comparable *out1 = T.retrieve(in1);
-// 	cout << "Retrieve - " << char1 << ":          " << (out1 != nullptr ? "found" : "not found")
-// 		<< endl;
-// 	const Comparable *out2 = T.retrieve(in2);
-// 	cout << "Retrieve - " << char2 << ":          " << (out2 != nullptr ? "found" : "not found")
-// 		<< endl;
-// 	cout << "Depth of - " << char1 << ":          " << T.depth(in1) << endl;
-// 	cout << "Depth of - " << char2 << ":          " << T.depth(in2) << endl;
-// 	cout << "Descendants of - " << char1 << ":    " << T.descendants(in1) << endl;
-// 	cout << "Descendants of - " << char2 << ":    " << T.descendants(in2) << endl;
+
+	// test retrieve, depth, descendants
+	//const Comparable *out1 = T.retrieve(in1);
+	//cout << "Retrieve - " << char1 << ":          " << (out1 != nullptr ? "found" : "not found")
+	//	<< endl;
+	// const Comparable *out2 = T.retrieve(in2);
+	// cout << "Retrieve - " << char2 << ":          " << (out2 != nullptr ? "found" : "not found")
+	// 	<< endl;
+	// cout << "Depth of - " << char1 << ":          " << T.depth(in1) << endl;
+	// cout << "Depth of - " << char2 << ":          " << T.depth(in2) << endl;
+	// cout << "Descendants of - " << char1 << ":    " << T.descendants(in1) << endl;
+	// cout << "Descendants of - " << char2 << ":    " << T.descendants(in2) << endl;
 
 // 	// test operator==, operator!=
 // 	T2 = T;
