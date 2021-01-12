@@ -37,6 +37,10 @@ private:
   Node *retrievePrivate(Node *node, const Comparable &c1, bool &found) const;
   void depthPrivate(Node *node, const Comparable & c1, int &depth) const;
   void descendantsPrivate(Node *node, const Comparable &c1, int &num) const;
+  void removePrivate(Node *nodeP, const Comparable &c1, bool &removed);
+  void removeRootPrivate();
+  Comparable *smallestSubTreePrivate(Node *node);
+  void removeChildNodePrivate(Node *nodeP, Node *node, bool left);
 
 public:
   //Constructors and destructor
@@ -54,11 +58,12 @@ public:
   //Mutators
   bool insert(Comparable *ptr); // inserts a Comparable into the tree or increments
 
-  // bool remove(const Comparable &c); //removes one occurrence of a Comparable from the tree
+  bool remove(const Comparable &c1); //removes one occurrence of a Comparable from the tree
   void makeEmpty(); // removes and deallocates all of the data from the tree (Tree still there)
 
   //Accessors
   const Comparable *retrieve(const Comparable & c1) const;
   int depth(const Comparable & c1) const;
   int descendants(const Comparable & c1) const;
+  Comparable* smallestSubTree();
 };

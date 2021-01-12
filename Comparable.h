@@ -26,10 +26,10 @@ public:
     bool operator!=(const Comparable& rhs) const;
 
     //friend bool operator<(const Comparable& lhs, const Comparable& rhs);
-    bool operator<(const Comparable& rhs);
+    bool operator<(const Comparable& rhs) const;
 
     //friend bool operator>(const Comparable& lhs, const Comparable& rhs);
-    bool operator>(const Comparable& rhs);
+    bool operator>(const Comparable& rhs) const;
 
     friend ostream &operator<<(ostream &output, Comparable &I);
     friend istream &operator>>(istream &input, Comparable &I);

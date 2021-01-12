@@ -22,7 +22,7 @@ SearchTree::SearchTree(const SearchTree &org)
 
 SearchTree::~SearchTree()
 {
-    clear(root);
+    makeEmptyPrivate(root);
 }
 
 Node *SearchTree::copyPrivate(const Node *copyNode)
@@ -64,6 +64,9 @@ void SearchTree::makeEmptyPrivate(Node *&node)
 
     makeEmptyPrivate(node->left);
     makeEmptyPrivate(node->right);
+
+    delete node->item;
+    node->item = nullptr;
 
     delete node;
     node = nullptr;
@@ -288,3 +291,196 @@ void SearchTree::descendantsPrivate(Node *node, const Comparable &c1, int &num) 
 
     return descendantsPrivate(node->left, c1, num);
 }
+
+bool SearchTree::remove(const Comparable &c1)
+{
+
+    bool removed = false;
+    removePrivate(root, c1, removed);
+    return removed;
+}
+
+void SearchTree::removePrivate(Node *nodeP, const Comparable &c1, bool &removed)
+{
+    if (root != nullptr)
+    {
+        if (*root->item == c1)
+        {
+            removeRootPrivate();
+            removed = true;
+            return;
+        }
+
+        if (c1 < *nodeP->item && nodeP->left != nullptr)
+        {
+            //code1
+            if (*nodeP->left->item == c1)
+            {
+                removeChildNodePrivate(nodeP, nodeP->left, true);  
+                removed = true;
+            }
+            else
+            { // code2
+                removePrivate(nodeP->left, c1, removed);
+            }
+        }
+        else if (c1 > *nodeP->item && nodeP->right != nullptr)
+        {
+            //code1
+            if (*nodeP->right->item == c1)
+            {
+                removeChildNodePrivate(nodeP, nodeP->right, false); 
+            }
+            else
+            { // code2
+                removePrivate(nodeP->right, c1, removed);
+            }
+        }
+
+        //return removePrivate(nodeP->left, c1, removed);
+    }
+}
+
+void SearchTree::removeRootPrivate()
+{
+    bool removed = false;
+
+    if (root->count >= 1)
+    {
+        root->count = root->count - 1;
+        return;
+    }
+    else
+    {
+        Node *ptr = root;
+        Comparable *item = root->item;
+
+        if (root->left == nullptr && root->right == nullptr)
+        {
+            //root = nullptr;
+
+            delete ptr->item;
+            ptr->item = nullptr;
+
+            delete ptr;
+            root = nullptr;
+        }
+        else if (root->left == nullptr && root->right != nullptr)
+        {
+            root = root->right;
+            delete ptr;
+            ptr = nullptr;
+        }
+        else if (root->left != nullptr && root->right == nullptr)
+        {
+            root = root->left;
+            delete ptr;
+            ptr = nullptr;
+        }
+        else if (root->left != nullptr && root->right != nullptr)
+        {
+            Comparable *smallRT = smallestSubTreePrivate(root->right);
+            removePrivate(root, *smallRT, removed);
+            root->item = smallRT;
+        }
+    }
+}
+
+Comparable *SearchTree::smallestSubTree()
+{
+    return smallestSubTreePrivate(root);
+}
+
+Comparable *SearchTree::smallestSubTreePrivate(Node *node)
+{
+    if (root == nullptr)
+    {
+        return nullptr;
+    }
+    else
+    {
+        if (node->left != nullptr)
+        {
+            return smallestSubTreePrivate(node->left);
+        }
+        else
+        {
+            return node->item;
+        }
+    }
+}
+
+void SearchTree::removeChildNodePrivate(Node *nodeP, Node *node, bool left)
+{
+    bool removed = false;
+    Node *ptr;
+    Comparable *smallRT;
+    Comparable *item = node->item;
+
+    if (node->left == nullptr && node->right == nullptr)
+    {
+        ptr = node;
+        if (left == true)
+        {
+            nodeP->left = nullptr;
+        }
+        else
+        {
+            nodeP->right = nullptr;
+        }
+
+        delete ptr->item;
+        ptr->item = nullptr;
+
+        delete ptr;
+        ptr = nullptr;
+    }
+    else if (node->left == nullptr && node->right != nullptr)
+    {
+        if (left)
+        {
+            nodeP->left = node->right;
+        }
+        else
+        {
+            nodeP->right = node->right;
+        }
+
+        node->right = nullptr;
+        ptr = node;
+
+        delete ptr->item;
+        ptr->item = nullptr;
+
+        delete ptr;
+        ptr = nullptr;
+    }
+    else if (node->left != nullptr && node->right == nullptr)
+    {
+        if (left)
+        {
+            nodeP->left = node->left;
+        }
+        else
+        {
+            nodeP->right = node->left;
+        }
+
+        node->left = nullptr;
+        ptr = node;
+
+        delete ptr->item;
+        ptr->item = nullptr;
+
+        delete ptr;
+        ptr = nullptr;
+    }
+    else if (node->left != nullptr && node->right != nullptr)
+    {
+        Comparable *smallRT = smallestSubTreePrivate(node->right);
+        removePrivate(node, *smallRT, removed);
+        node->item = smallRT;
+    }
+}
+
+//Node *nodeP, const Comparable &c1, bool &removed

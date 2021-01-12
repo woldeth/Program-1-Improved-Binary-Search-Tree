@@ -29,7 +29,7 @@ bool Comparable::operator!=(const Comparable &rhs) const
 //     return lhs.c < rhs.c;
 // }
 
-bool Comparable::operator<(const Comparable &rhs)
+bool Comparable::operator<(const Comparable &rhs) const
 {
     return c < rhs.c;
 }
@@ -39,7 +39,7 @@ bool Comparable::operator<(const Comparable &rhs)
 //     return lhs.c > rhs.c;
 // }
 
-bool Comparable::operator>(const Comparable &rhs)
+bool Comparable::operator>(const Comparable &rhs) const
 {
     return c > rhs.c;
 }
