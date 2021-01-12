@@ -31,9 +31,10 @@ private:
   Node *root;
   void insertPrivate(Comparable *ptr, Node *&node, bool &flag);
   void inOrderPrivate(const Node *const &node) const; // inorder traverals
-  Node *copyPrivate(const Node *copyNode);            // inoder taversal
+  Node *copyPrivate(const Node *copyNode);            // preorder taversal
   void makeEmptyPrivate(Node *&node);                 // post order traversal
   void eePrivate(const Node *lhsNode, const Node *rhsNode, bool &sameTree);
+  Node *retrievePrivate(Node *node, const Comparable &c1, bool &found) const;
 
 public:
   //Constructors and destructor
@@ -55,7 +56,7 @@ public:
   void makeEmpty(); // removes and deallocates all of the data from the tree (Tree still there)
 
   //Accessors
-  // const Comparable *retrieve(const Comparable & c1) const;
+  const Comparable *retrieve(const Comparable & c1) const;
   // int depth(const Comparable &) const;
   // int descendants(const Comparable &) const;
 };

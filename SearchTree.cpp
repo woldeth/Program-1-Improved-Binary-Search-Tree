@@ -181,5 +181,37 @@ void SearchTree::eePrivate(const Node *lhsNode, const Node *rhsNode, bool &sameT
 bool SearchTree::operator!=(const SearchTree &rhs)
 {
     return !(*this == rhs);
+}
 
+const Comparable *SearchTree::retrieve(const Comparable &c1) const
+{
+    bool found = false;
+
+    Node *ptr = retrievePrivate(root, c1, found);
+
+    if (found)
+    {
+        return ptr->item;
+    }
+
+    return nullptr;
+}
+
+Node *SearchTree::retrievePrivate(Node *node, const Comparable &c1, bool &found) const
+{
+    if (node == nullptr)
+        return node;
+
+    if (*node->item == c1)
+    {
+        found = true;
+        return node;
+    }
+
+    if (*node->item < c1)
+    {
+        return retrievePrivate(node->right, c1, found);
+    }
+
+    return retrievePrivate(node->left, c1, found);
 }
