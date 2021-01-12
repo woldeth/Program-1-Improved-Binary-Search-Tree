@@ -103,8 +103,8 @@ int main() {
 		<< endl;
 	cout << "Depth of - " << char1 << ":          " << T.depth(in1) << endl;
 	cout << "Depth of - " << char2 << ":          " << T.depth(in2) << endl;
-	// cout << "Descendants of - " << char1 << ":    " << T.descendants(in1) << endl;
-	// cout << "Descendants of - " << char2 << ":    " << T.descendants(in2) << endl;
+	cout << "Descendants of - " << char1 << ":    " << T.descendants(in1) << endl;
+	cout << "Descendants of - " << char2 << ":    " << T.descendants(in2) << endl;
 
 	// // test operator==, operator!=
 	// T2 = T;

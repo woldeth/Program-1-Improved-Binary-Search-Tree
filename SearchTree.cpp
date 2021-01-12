@@ -247,3 +247,44 @@ void SearchTree::depthPrivate(Node *node, const Comparable &c1, int &depth) cons
     depth = depth + 1;
     return depthPrivate(node->left, c1, depth);
 }
+
+int SearchTree::descendants(const Comparable &c1) const
+{
+    int num = 0;
+    descendantsPrivate(root, c1, num);
+    return num;
+}
+
+void SearchTree::descendantsPrivate(Node *node, const Comparable &c1, int &num) const
+{
+    if (node == nullptr)
+    {
+        num = -1;
+        return;
+    }
+
+    if (*node->item == c1)
+    {
+        if (node->left && node->right)
+        {
+            num = 2;
+        }
+        else if (node->left || node->right)
+        {
+            num = 1;
+        }
+        else
+        {
+            num = 0;
+        }
+
+        return;
+    }
+
+    if (*node->item < c1)
+    {
+        return descendantsPrivate(node->right, c1, num);
+    }
+
+    return descendantsPrivate(node->left, c1, num);
+}

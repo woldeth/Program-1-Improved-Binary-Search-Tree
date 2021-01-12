@@ -36,6 +36,7 @@ private:
   void eePrivate(const Node *lhsNode, const Node *rhsNode, bool &sameTree);
   Node *retrievePrivate(Node *node, const Comparable &c1, bool &found) const;
   void depthPrivate(Node *node, const Comparable & c1, int &depth) const;
+  void descendantsPrivate(Node *node, const Comparable &c1, int &num) const;
 
 public:
   //Constructors and destructor
@@ -59,5 +60,5 @@ public:
   //Accessors
   const Comparable *retrieve(const Comparable & c1) const;
   int depth(const Comparable & c1) const;
-  // int descendants(const Comparable &) const;
+  int descendants(const Comparable & c1) const;
 };
