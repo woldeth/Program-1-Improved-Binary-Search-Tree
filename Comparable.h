@@ -1,11 +1,12 @@
 // ------------------------------------------------------------------------//
 // Name: Tomas H Woldemichael
-// Date: January 9, 2021
-// File Name: Comparable.cpp
+// Date: January 12, 2021
+// File Name: Comparable.h
 // Title: PROGRAM 1
-// Description:
-//
-//
+// Description: This file is the header file for the Comparable class. Users
+// Will be able to inherit this class and replace the item with a private
+// primative type of their chose. The comparable class will handles basic operators
+// such as but not limited to does not equal, less than, greater than and more.
 // ------------------------------------------------------------------------//
 #pragma once
 
@@ -19,21 +20,48 @@ private:
     char c;
 
 public:
-    //friend bool operator==(const Comparable& lhs, const Comparable& rhs);
-    bool operator==(const Comparable& rhs) const;
+    bool operator==(const Comparable &rhs) const; // Checks if lhs comparable is equal to rhs
+    bool operator!=(const Comparable &rhs) const; // Checks if lhs comparable is not equal to rhs
+    bool operator<(const Comparable &rhs) const;  // Checks if lhs comparable is less than rhs
+    bool operator>(const Comparable &rhs) const;  // Checks if lhs comparable is greater than rhs
 
-    //friend bool operator!=(const Comparable& lhs, const Comparable& rhs);
-    bool operator!=(const Comparable& rhs) const;
+    friend ostream &operator<<(ostream &output, Comparable &I); // Displays private member variable to ostream
+    friend istream &operator>>(istream &input, Comparable &I);  // Assigns inputted variable through istream to private member variable
 
-    //friend bool operator<(const Comparable& lhs, const Comparable& rhs);
-    bool operator<(const Comparable& rhs) const;
+    // I can get rid of all these functions. No Need
 
-    //friend bool operator>(const Comparable& lhs, const Comparable& rhs);
-    bool operator>(const Comparable& rhs) const;
+    /*  SearchTree - Copy Constructor
+	ORG:
+    	Comparable *newItem = new Comparable;
+   	newItem->setItem(copyNode->item->getItem());
+    	Node *newNode = new Node(newItem);
 
-    friend ostream &operator<<(ostream &output, Comparable &I);
-    friend istream &operator>>(istream &input, Comparable &I);
-    const void itemDisplay() const;
-    char getItem();
-    const bool setItem(const char newC);
+	UPDATE
+    	Comparable *newItem = new Comparable(*copyNode->item);
+    	Node *newNode = new Node(newItem);
+
+
+     */
+
+    /*  SearchTree - inOrder
+
+	ORG:
+    	inOrderPrivate(node->left);
+    	cout << node->item->getItem() << " " << node->count << endl;
+    	inOrderPrivate(node->right);pyNode->item);
+    	Node *newNode = new Node(newItem);
+
+	Updates:
+    	inOrderPrivate(node->left);
+    	cout << *node->item << " " << node->count << endl;
+    	inOrderPrivate(node->right);pyNode->item);
+    	Node *newNode = new Node(newItem);
+
+
+
+     */
+
+    const void itemDisplay() const;      // DELETE
+    char getItem();                      // Returns private member variable
+    const bool setItem(const char newC); // Assigns new valaue to private data variable
 };

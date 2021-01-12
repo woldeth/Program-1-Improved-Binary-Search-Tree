@@ -15,8 +15,8 @@
 #include <string>
 #include <sstream>
 
-#include "SearchTree.h"
-#include "Comparable.h"
+#include "SearchTree.cpp"
+#include "Comparable.cpp"
 using namespace std;
 
 //-------------------------- buildTree --------------------------------------
