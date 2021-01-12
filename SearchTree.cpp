@@ -345,7 +345,7 @@ void SearchTree::removeRootPrivate()
 {
     bool removed = false;
 
-    if (root->count >= 1)
+    if (root->count > 1)
     {
         root->count = root->count - 1;
         return;
@@ -412,6 +412,10 @@ Comparable *SearchTree::smallestSubTreePrivate(Node *node)
 
 void SearchTree::removeChildNodePrivate(Node *nodeP, Node *node, bool left)
 {
+    if (node->count > 1) {
+        node->count = node->count - 1;
+        return;
+    }
     bool removed = false;
     Node *ptr;
     Comparable *smallRT;

@@ -15,8 +15,8 @@
 #include <string>
 #include <sstream>
 
-#include "SearchTree.cpp"
-#include "Comparable.cpp"
+#include "SearchTree.h"
+#include "Comparable.h"
 using namespace std;
 
 //-------------------------- buildTree --------------------------------------
@@ -113,7 +113,7 @@ int main()
 	T2 = T;
 	cout << "T == T2?               " << (T == T2 ? "equal" : "not equal") << endl;
 	cout << "T != T2?               " << (T != T2 ? "not equal" : "equal") << endl;
-	SearchTree T3 = T2;                        // test copy constructor, too
+	SearchTree T3 = T2; // test copy constructor, too
 	cout << "T3 == T2?              " << (T == T2 ? "equal" : "not equal") << endl;
 	cout << "T3 != T2?              " << (T != T2 ? "not equal" : "equal") << endl;
 	T2.makeEmpty();
@@ -124,7 +124,8 @@ int main()
 
 	// test insert and operators
 	bool success = T3.insert(in3);
-	if (!success) delete in3;
+	if (!success)
+		delete in3;
 	in3 = nullptr;
 	cout << "T == T3?               " << (T == T3 ? "equal" : "not equal") << endl;
 	cout << "T != T3?               " << (T != T3 ? "not equal" : "equal") << endl;
@@ -135,13 +136,31 @@ int main()
 	else
 		cout << char1 << " - removed (one instance)." << endl;
 
-
 	if (!T.remove(in2))
 		cout << char2 << " - not found." << endl;
 	else
 		cout << char2 << " - removed (one instance)." << endl;
 
 	cout << "check for x" << endl;
+
+	// test operator<<
+	cout << "Frequency table:  " << endl;
+	cout << T;
+	cout << endl;
+
+	if (!T.remove(in1))
+		cout << char1 << " - not found." << endl;
+	else
+		cout << char1 << " - removed (one instance)." << endl;
+
+	if (!T.remove(in2))
+		cout << char2 << " - not found." << endl;
+	else
+		cout << char2 << " - removed (one instance)." << endl;
+
+	cout << "Frequency table:  " << endl;
+	cout << T;
+	cout << endl;
 
 	return 0;
 }
