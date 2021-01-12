@@ -200,7 +200,9 @@ const Comparable *SearchTree::retrieve(const Comparable &c1) const
 Node *SearchTree::retrievePrivate(Node *node, const Comparable &c1, bool &found) const
 {
     if (node == nullptr)
+    {
         return node;
+    }
 
     if (*node->item == c1)
     {
@@ -214,4 +216,34 @@ Node *SearchTree::retrievePrivate(Node *node, const Comparable &c1, bool &found)
     }
 
     return retrievePrivate(node->left, c1, found);
+}
+
+int SearchTree::depth(const Comparable &c1) const
+{
+    int depth = 0;
+    depthPrivate(root, c1, depth);
+    return depth;
+}
+
+void SearchTree::depthPrivate(Node *node, const Comparable &c1, int &depth) const
+{
+    if (node == nullptr)
+    {
+        depth = -1;
+        return;
+    }
+
+    if (*node->item == c1)
+    {
+        return;
+    }
+
+    if (*node->item < c1)
+    {
+        depth = depth + 1;
+        return depthPrivate(node->right, c1, depth);
+    }
+
+    depth = depth + 1;
+    return depthPrivate(node->left, c1, depth);
 }

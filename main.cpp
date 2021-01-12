@@ -101,8 +101,8 @@ int main() {
 	const Comparable *out2 = T.retrieve(in2);
 	cout << "Retrieve - " << char2 << ":          " << (out2 != nullptr ? "found" : "not found")
 		<< endl;
-	// cout << "Depth of - " << char1 << ":          " << T.depth(in1) << endl;
-	// cout << "Depth of - " << char2 << ":          " << T.depth(in2) << endl;
+	cout << "Depth of - " << char1 << ":          " << T.depth(in1) << endl;
+	cout << "Depth of - " << char2 << ":          " << T.depth(in2) << endl;
 	// cout << "Descendants of - " << char1 << ":    " << T.descendants(in1) << endl;
 	// cout << "Descendants of - " << char2 << ":    " << T.descendants(in2) << endl;
 
