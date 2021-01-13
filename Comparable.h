@@ -28,40 +28,7 @@ public:
     friend ostream &operator<<(ostream &output, Comparable &I); // Displays private member variable to ostream
     friend istream &operator>>(istream &input, Comparable &I);  // Assigns inputted variable through istream to private member variable
 
-    // I can get rid of all these functions. No Need
-
-    /*  SearchTree - Copy Constructor
-	ORG:
-    	Comparable *newItem = new Comparable;
-   	newItem->setItem(copyNode->item->getItem());
-    	Node *newNode = new Node(newItem);
-
-	UPDATE
-    	Comparable *newItem = new Comparable(*copyNode->item);
-    	Node *newNode = new Node(newItem);
-
-
-     */
-
-    /*  SearchTree - inOrder
-
-	ORG:
-    	inOrderPrivate(node->left);
-    	cout << node->item->getItem() << " " << node->count << endl;
-    	inOrderPrivate(node->right);pyNode->item);
-    	Node *newNode = new Node(newItem);
-
-	Updates:
-    	inOrderPrivate(node->left);
-    	cout << *node->item << " " << node->count << endl;
-    	inOrderPrivate(node->right);pyNode->item);
-    	Node *newNode = new Node(newItem);
-
-
-
-     */
-
-    const void itemDisplay() const;      // DELETE
-    char getItem();                      // Returns private member variable
-    const bool setItem(const char newC); // Assigns new valaue to private data variable
+    // const void itemDisplay() const;      // DELETE
+    // char getItem();                      // Returns private member variable
+    // const bool setItem(const char newC); // Assigns new valaue to private data variable
 };

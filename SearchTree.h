@@ -49,7 +49,6 @@ public:
   SearchTree();                      // Constructor creates a BST new root
   SearchTree(const SearchTree &org); // Copy constuctor that makes a deep copy of object
   ~SearchTree();                     // Destructor
-  void clear(Node *&node);           // Destroy tree for destuctor - DELETE
 
   //Overloaded operators
   SearchTree &operator=(const SearchTree &rhs);                     // Assignment of one tree to another (Deep copy)

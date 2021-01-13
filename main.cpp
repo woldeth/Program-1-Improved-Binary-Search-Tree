@@ -75,12 +75,22 @@ int main()
 	buildTree(infile, T);
 
 	SearchTree first(T);
-	duplicate = duplicate = T;
-	duplicate.makeEmpty();
+	cout << "Frequency table: First  " << endl;
+	cout << first;
+	cout << endl;
+
+	//duplicate = duplicate = T;
+	first.makeEmpty();
+
+	cout << "------CLEARED FIRST-------" << endl;
 
 	// test operator<<
-	cout << "Frequency table:  " << endl;
+	cout << "Frequency table: T  " << endl;
 	cout << T;
+	cout << endl;
+
+	cout << "Frequency table: first " << endl;
+	cout << first;
 	cout << endl;
 
 	// create some Comparables to retrieve

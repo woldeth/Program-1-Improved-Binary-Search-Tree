@@ -9,35 +9,20 @@
 #include "Comparable.h"
 #include <iostream>
 
-// bool Comparable::operator==(const Comparable& lhs, const Comparable& rhs){
-//     return lhs.c == rhs.c;
-// }
 bool Comparable::operator==(const Comparable &rhs) const
 {
     return c == rhs.c;
 }
 
-// bool operator!=(const Comparable& lhs, const Comparable& rhs){
-//     return lhs.c != rhs.c;
-// }
 bool Comparable::operator!=(const Comparable &rhs) const
 {
     return c != rhs.c;
 }
 
-// bool operator<(const Comparable& lhs, const Comparable& rhs){
-//     return lhs.c < rhs.c;
-// }
-
 bool Comparable::operator<(const Comparable &rhs) const
 {
     return c < rhs.c;
 }
-
-// bool operator>(const Comparable &lhs, const Comparable &rhs)
-// {
-//     return lhs.c > rhs.c;
-// }
 
 bool Comparable::operator>(const Comparable &rhs) const
 {
@@ -56,18 +41,18 @@ istream &operator>>(istream &input, Comparable &I)
     return input;
 }
 
-const void Comparable::itemDisplay() const
-{
-    cout << c;
-}
+// const void Comparable::itemDisplay() const
+// {
+//     cout << c;
+// }
 
-char Comparable::getItem()
-{
-    return c;
-}
+// char Comparable::getItem()
+// {
+//     return c;
+// }
 
-const bool Comparable::setItem(const char newC)
-{
-    c = newC;
-    return true;
-}
+// const bool Comparable::setItem(const char newC)
+// {
+//     c = newC;
+//     return true;
+// }
