@@ -262,7 +262,6 @@ bool SearchTree::operator!=(const SearchTree &rhs)
     return !(*this == rhs);
 }
 
-
 /** retrieve(const Comparable &c1)
  * @brief   Gets the comparable from the the SearchTree. Returns comparable
  * @param   c1 The comparable the program will look for in search tree
@@ -369,7 +368,6 @@ int SearchTree::descendants(const Comparable &c1) const
     return num;
 }
 
-
 /** descendantsPrivate(Node *node, const Comparable &c1, int &num) 
  * @brief   Private hellper, gets the amount of child nodes of a node 
  * @param   node The node at which the recursion will start
@@ -412,8 +410,6 @@ void SearchTree::descendantsPrivate(Node *node, const Comparable &c1, int &num) 
     return descendantsPrivate(node->left, c1, num);
 }
 
-
-
 /** remove(const Comparable &c1)
  * @brief   Removes a node from the searchtree. Returns bool if it does
  * @param   c1 The comparable the program will look for in search tree to remove
@@ -427,8 +423,6 @@ bool SearchTree::remove(const Comparable &c1)
     removePrivate(root, c1, removed);
     return removed;
 }
-
-
 
 /** removePrivate(Node *nodeP, const Comparable &c1, bool &removed)
  * @brief   Removes a node from the searchtree. Returns bool if it does
@@ -476,7 +470,6 @@ void SearchTree::removePrivate(Node *nodeP, const Comparable &c1, bool &removed)
         }
     }
 }
-
 
 /** removeRootPrivate()
  * @brief   Removes the root node from the search tree
@@ -538,7 +531,6 @@ Comparable *SearchTree::smallestSubTree()
     return smallestSubTreePrivate(root);
 }
 
-
 /** smallestSubTreePrivate(Node *node)
  * @brief   iterates to the smallest node in subtree
  * @param   node The node at which the iteration will start
@@ -563,7 +555,6 @@ Comparable *SearchTree::smallestSubTreePrivate(Node *node)
         }
     }
 }
-
 
 /** removeChildNodePrivate(Node *nodeP, Node *node, bool left)
  * @brief   Removes a node in which is not a 
