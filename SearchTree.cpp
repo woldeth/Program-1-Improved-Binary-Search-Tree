@@ -526,22 +526,19 @@ void SearchTree::removeRootPrivate()
         } // continue to traverse
         else if (root->left != nullptr && root->right != nullptr)
         {
-            // Comparable *smallRT = smallestSubTreePrivate(root->right);
-            // Comparable *newSmrt = new Comparable(*smallRT);
-            // removePrivate(root, *smallRT, removed);
-            // root->item = newSmrt;
-
-            // newSmrt = nullptr;
-            // delete newSmrt;
-
-            // smallRT = nullptr;
-            // delete smallRT;
 
             Comparable *smallRT = smallestSubTreePrivate(root->right);
             Comparable *newSmrt = new Comparable(*smallRT);
             removePrivate(root, *smallRT, removed);
+
             delete root->item;
             root->item = newSmrt;
+
+            newSmrt = nullptr;
+            delete newSmrt;
+
+            smallRT = nullptr;
+            delete smallRT;
         }
     }
 }
@@ -657,10 +654,6 @@ void SearchTree::removeChildNodePrivate(Node *nodeP, Node *node, bool left)
     } // two children nodes
     else if (node->left != nullptr && node->right != nullptr)
     {
-        // cout << "TOMAS IS THE MAN = ";                                     //<< *smallRT << endl;
-        // Comparable *smallRT = smallestSubTreePrivate(node->right); // get smallest in right subtree
-        // removePrivate(node, *smallRT, removed);
-        // node->item = smallRT;
         Comparable *smallRT = smallestSubTreePrivate(node->right);
         Comparable *newSmrt = new Comparable(*smallRT);
         removePrivate(node, *smallRT, removed);
