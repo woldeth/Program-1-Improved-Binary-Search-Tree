@@ -1,6 +1,6 @@
 // ------------------------------------------------------------------------//
 // Name: Tomas H Woldemichael
-// Date: Jan 9, 2021
+// Date: Jan 13, 2021
 // File Name: SearchTree.cpp
 // Title: PROGRAM 4
 // Description: This file is the implementation of the SearchTree class.

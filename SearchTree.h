@@ -1,6 +1,6 @@
 // ------------------------------------------------------------------------//
 // Name: Tomas H Woldemichael
-// Date: January 12, 2021
+// Date: January 13, 2021
 // File Name: SearchTree.h
 // Title: PROGRAM 1
 // Description: This file is the SearchTree header file. Users will be able
