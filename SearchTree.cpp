@@ -484,9 +484,7 @@ void SearchTree::removeRootPrivate()
     else
     {
         Node *ptr = root;
-        //Comparable *item = root->item;
-        //Comparable smallRightsubTree;
-
+\
         // no childern
         if (root->left == nullptr && root->right == nullptr)
         {
@@ -536,9 +534,6 @@ void SearchTree::removeRootPrivate()
 
             newSmrt = nullptr;
             delete newSmrt;
-
-            smallRT = nullptr;
-            delete smallRT;
         }
     }
 }
@@ -589,7 +584,7 @@ void SearchTree::removeChildNodePrivate(Node *nodeP, Node *node, bool left)
     bool removed = false;
     Node *ptr;
     Comparable *smallRT;
-    //Comparable *item = node->item;
+
 
     // no children
     if (node->left == nullptr && node->right == nullptr)
@@ -664,7 +659,5 @@ void SearchTree::removeChildNodePrivate(Node *nodeP, Node *node, bool left)
         newSmrt = nullptr;
         delete newSmrt;
 
-        smallRT = nullptr;
-        delete smallRT;
     }
 }

@@ -154,24 +154,23 @@ int main()
 	cout << "check for x" << endl;
 
 	// //test operator<<
-	// cout << "Frequency table:  " << endl;
-	// cout << T;
-	// cout << endl;
+	cout << "Frequency table:  " << endl;
+	cout << T;
+	cout << endl;
 
-	// if (!T.remove(in1))
-	// 	cout << char1 << " - not found." << endl;
-	// else
-	// 	cout << char1 << " - removed (one instance)." << endl;
+	if (!T.remove(in1))
+		cout << char1 << " - not found." << endl;
+	else
+		cout << char1 << " - removed (one instance)." << endl;
 
-	// if (!T.remove(in2))
-	// 	cout << char2 << " - not found." << endl;
-	// else
-	// 	cout << char2 << " - removed (one instance)." << endl;
+	if (!T.remove(in2))
+		cout << char2 << " - not found." << endl;
+	else
+		cout << char2 << " - removed (one instance)." << endl;
 
-	// cout << "Frequency table:  " << endl;
-	// cout << T;
-	// cout << endl;
-
+	cout << "Frequency table:  " << endl;
+	cout << T;
+	cout << endl;
 
 	return 0;
 }
