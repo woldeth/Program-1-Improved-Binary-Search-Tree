@@ -368,54 +368,37 @@ void SearchTree::depthPrivate(Node *node, const Comparable &c1, int &depth) cons
 */
 int SearchTree::descendants(const Comparable &c1) const
 {
-    int num = 0;
-    descendantsPrivate(root, c1, num);
-    return num;
+    // int num = 0;
+    // descendantsPrivate(root, c1, num);
+    // return num;
+
+    bool found = false;
+    Node *nodeItem = retrievePrivate(root, c1, found);
+    int descendants;
+    if (nodeItem != nullptr)
+    {
+        return descendantsPrivate(nodeItem) - 1;
+    }
+    else
+    {
+        return -1;
+    }
 }
 
 /** descendantsPrivate(Node *node, const Comparable &c1, int &num) 
- * @brief   Private hellper, gets the amount of child nodes of a node 
+ * @brief   Private helper, gets the amount of descedant nodes of a node 
  * @param   node The node at which the recursion will start
- * @param   c1 The comparable the program will look for in search tree
- * @param   num The amount of the children this node has
- * @pre     The amount of children for a node is unknown
- * @post    The amount of children for a node will be found.
+ * @pre     The amount of descendants for a node is unknown
+ * @post    The amount of descendants for a node will be found.
 */
-void SearchTree::descendantsPrivate(Node *node, const Comparable &c1, int &num) const
+
+int SearchTree::descendantsPrivate(Node *node) const
 {
-    //Comparable is not found
     if (node == nullptr)
     {
-        num = -1;
-        return;
+        return 0;
     }
-
-    //comparable is found check if there are children nodes
-    if (*node->item == c1)
-    {
-        if (node->left && node->right)
-        {
-            num = 2;
-        }
-        else if (node->left || node->right)
-        {
-            num = 1;
-        }
-        else
-        {
-            num = 0;
-        }
-
-        return;
-    }
-
-    // traversal either left or right based on comparable
-    if (*node->item < c1)
-    {
-        return descendantsPrivate(node->right, c1, num);
-    }
-
-    return descendantsPrivate(node->left, c1, num);
+    return 1 + descendantsPrivate(node->left) + descendantsPrivate(node->right);
 }
 
 /** remove(const Comparable &c1)
@@ -491,7 +474,7 @@ void SearchTree::removeRootPrivate()
 {
     bool removed = false;
 
-    // deincrement if there is more than 1 instance 
+    // deincrement if there is more than 1 instance
     if (root->count > 1)
     {
         root->count = root->count - 1;
@@ -499,24 +482,27 @@ void SearchTree::removeRootPrivate()
     }
     else
     {
-        Node *ptr = root;               
+        Node *ptr = root;
         Comparable *item = root->item;
+        //Comparable smallRightsubTree;
 
         // no childern
         if (root->left == nullptr && root->right == nullptr)
         {
-            //root = nullptr;
+            root = nullptr;
 
             delete ptr->item;
             ptr->item = nullptr;
 
             delete ptr;
-            root = nullptr;
+            ptr = nullptr;
+            //root = nullptr;
 
-        }// one child rhs
+        } // one child rhs
         else if (root->left == nullptr && root->right != nullptr)
         {
             root = root->right;
+            ptr->right = nullptr;
 
             delete ptr->item;
             ptr->item = nullptr;
@@ -528,6 +514,7 @@ void SearchTree::removeRootPrivate()
         else if (root->left != nullptr && root->right == nullptr)
         {
             root = root->left;
+            ptr->left = nullptr;
 
             delete ptr->item;
             ptr->item = nullptr;
@@ -535,25 +522,16 @@ void SearchTree::removeRootPrivate()
             delete ptr;
             ptr = nullptr;
 
-        }// continue to traverse
+        } // continue to traverse
         else if (root->left != nullptr && root->right != nullptr)
         {
             Comparable *smallRT = smallestSubTreePrivate(root->right);
+            Comparable *newSmrt = new Comparable(*smallRT);
             removePrivate(root, *smallRT, removed);
-            root->item = smallRT;
+            root->item = newSmrt;
         }
     }
 }
-
-// /** smallestSubTree()
-//  * @brief   iterates to the smallest node in subtree
-//  * @pre     Smallest node comparable is unknown in tree
-//  * @post    Finds the smallest node and returns the comparable to that ndoe
-// */
-// Comparable *SearchTree::smallestSubTree()
-// {
-//     return smallestSubTreePrivate(root);
-// }
 
 /** smallestSubTreePrivate(Node *node)
  * @brief   iterates to the smallest node in subtree
@@ -569,13 +547,14 @@ Comparable *SearchTree::smallestSubTreePrivate(Node *node)
         return nullptr;
     }
     else
-    {   // continue to move to the left
+    { // continue to move to the left
         if (node->left != nullptr)
         {
             return smallestSubTreePrivate(node->left);
         }
         else
-        {   // return the smallest item
+        { // return the smallest item
+
             return node->item;
         }
     }
@@ -590,7 +569,7 @@ Comparable *SearchTree::smallestSubTreePrivate(Node *node)
 */
 void SearchTree::removeChildNodePrivate(Node *nodeP, Node *node, bool left)
 {
-    // deincrement the node 
+    // deincrement the node
     if (node->count > 1)
     {
         node->count = node->count - 1;
@@ -602,7 +581,7 @@ void SearchTree::removeChildNodePrivate(Node *nodeP, Node *node, bool left)
     Comparable *smallRT;
     Comparable *item = node->item;
 
-    // no children 
+    // no children
     if (node->left == nullptr && node->right == nullptr)
     {
         ptr = node;
@@ -662,10 +641,12 @@ void SearchTree::removeChildNodePrivate(Node *nodeP, Node *node, bool left)
         delete ptr;
         ptr = nullptr;
 
-    }// two children nodes
+    } // two children nodes
     else if (node->left != nullptr && node->right != nullptr)
     {
+        cout << "got here = ";                                     //<< *smallRT << endl;
         Comparable *smallRT = smallestSubTreePrivate(node->right); // get smallest in right subtree
+        cout << "smallRT = " << *smallRT << endl;
         removePrivate(node, *smallRT, removed);
         node->item = smallRT;
     }

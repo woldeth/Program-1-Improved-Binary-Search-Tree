@@ -97,12 +97,12 @@ int main()
 	// the syntax is a bit strange here, since the only ways to create new
 	// Comparables are using operator>> (and constructors supplied by the compiler)
 
-	string char1 = "f";
+	string char1 = "3";
 	Comparable in1;
 	stringstream s1(char1);
 	s1 >> in1;
 
-	string char2 = "x";
+	string char2 = "6";
 	Comparable in2;
 	stringstream s2(char2);
 	s2 >> in2;
@@ -140,7 +140,7 @@ int main()
 	cout << "T == T3?               " << (T == T3 ? "equal" : "not equal") << endl;
 	cout << "T != T3?               " << (T != T3 ? "not equal" : "equal") << endl;
 
-	// test remove
+	//test remove
 	if (!T.remove(in1))
 		cout << char1 << " - not found." << endl;
 	else
@@ -153,7 +153,7 @@ int main()
 
 	cout << "check for x" << endl;
 
-	// test operator<<
+	//test operator<<
 	cout << "Frequency table:  " << endl;
 	cout << T;
 	cout << endl;
@@ -171,6 +171,9 @@ int main()
 	cout << "Frequency table:  " << endl;
 	cout << T;
 	cout << endl;
+
+
+	
 
 	return 0;
 }

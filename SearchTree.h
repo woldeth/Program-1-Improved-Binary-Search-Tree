@@ -38,7 +38,7 @@ private:
   void eePrivate(const Node *lhsNode, const Node *rhsNode, bool &sameTree);   // Helper function to determine if two SearchTree are equeal
   Node *retrievePrivate(Node *node, const Comparable &c1, bool &found) const; // Helper function to retrieve a comparable from a node
   void depthPrivate(Node *node, const Comparable &c1, int &depth) const;      // Helper function to get the depth of a node
-  void descendantsPrivate(Node *node, const Comparable &c1, int &num) const;  // Helper function to determine the amount of children nodes
+  int descendantsPrivate(Node *node) const;                                   // Helper function to determine the amount of descendant nodes
   void removePrivate(Node *nodeP, const Comparable &c1, bool &removed);       // Helper function to remove a node in the SearchTree or deincrement count
   void removeRootPrivate();                                                   // Helper function to remove the root node
   Comparable *smallestSubTreePrivate(Node *node);                             // Helper function to iteratate left from given node

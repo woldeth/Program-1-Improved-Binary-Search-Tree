@@ -3,14 +3,13 @@
 // Date: Jan 13, 2021
 // File Name: Comparable.cpp
 // Title: PROGRAM 4
-// Description: This the implementation file for the Comparable class. This 
+// Description: This the implementation file for the Comparable class. This
 // class is class that can be inherited to have an item c replaced with any
 // primative type. This class will handle most operators and istream and ostream
 // ------------------------------------------------------------------------//
 
 #include "Comparable.h"
 #include <iostream>
-
 
 /** operator==(const Comparable &rhs)
  * @brief   Determines if two comparables are equal to each other
@@ -31,7 +30,6 @@ bool Comparable::operator!=(const Comparable &rhs) const
 {
     return c != rhs.c;
 }
-
 
 /** operator<(const Comparable &rhs)
  * @brief   Determines if comparable on lhs is less than rhs
@@ -63,7 +61,6 @@ ostream &operator<<(ostream &output, Comparable &I)
     return output;
 }
 
-
 /** ooperator>>(istream &input, Comparable &I)
  * @brief   Gives defintion for when a comparable is passed through istream
  * @post    Returns istream and updates comparable private varible c
@@ -73,5 +70,3 @@ istream &operator>>(istream &input, Comparable &I)
     input >> I.c;
     return input;
 }
-
-
