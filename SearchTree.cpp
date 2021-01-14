@@ -2,7 +2,7 @@
 // Name: Tomas H Woldemichael
 // Date: Jan 13, 2021
 // File Name: SearchTree.cpp
-// Title: PROGRAM 4
+// Title: PROGRAM 1
 // Description: This file is the implementation of the SearchTree class.
 // Users will be able to create a binary search tree through the istream.
 // This class allows for features such as depth, descendents of a particular
@@ -484,7 +484,7 @@ void SearchTree::removeRootPrivate()
     else
     {
         Node *ptr = root;
-\
+
         // no childern
         if (root->left == nullptr && root->right == nullptr)
         {
@@ -585,7 +585,6 @@ void SearchTree::removeChildNodePrivate(Node *nodeP, Node *node, bool left)
     Node *ptr;
     Comparable *smallRT;
 
-
     // no children
     if (node->left == nullptr && node->right == nullptr)
     {
@@ -658,6 +657,5 @@ void SearchTree::removeChildNodePrivate(Node *nodeP, Node *node, bool left)
 
         newSmrt = nullptr;
         delete newSmrt;
-
     }
 }

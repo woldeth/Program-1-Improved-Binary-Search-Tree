@@ -2,7 +2,7 @@
 // Name: Tomas H Woldemichael
 // Date: Jan 13, 2021
 // File Name: Comparable.cpp
-// Title: PROGRAM 4
+// Title: PROGRAM 1
 // Description: This the implementation file for the Comparable class. This
 // class is class that can be inherited to have an item c replaced with any
 // primative type. This class will handle most operators and istream and ostream
