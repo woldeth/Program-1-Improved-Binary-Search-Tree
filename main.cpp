@@ -97,12 +97,12 @@ int main()
 	// the syntax is a bit strange here, since the only ways to create new
 	// Comparables are using operator>> (and constructors supplied by the compiler)
 
-	string char1 = "1";
+	string char1 = "3";
 	Comparable in1;
 	stringstream s1(char1);
 	s1 >> in1;
 
-	string char2 = "1";
+	string char2 = "3";
 	Comparable in2;
 	stringstream s2(char2);
 	s2 >> in2;
@@ -153,27 +153,25 @@ int main()
 
 	cout << "check for x" << endl;
 
-	//test operator<<
-	cout << "Frequency table:  " << endl;
-	cout << T;
-	cout << endl;
+	// //test operator<<
+	// cout << "Frequency table:  " << endl;
+	// cout << T;
+	// cout << endl;
 
-	if (!T.remove(in1))
-		cout << char1 << " - not found." << endl;
-	else
-		cout << char1 << " - removed (one instance)." << endl;
+	// if (!T.remove(in1))
+	// 	cout << char1 << " - not found." << endl;
+	// else
+	// 	cout << char1 << " - removed (one instance)." << endl;
 
-	if (!T.remove(in2))
-		cout << char2 << " - not found." << endl;
-	else
-		cout << char2 << " - removed (one instance)." << endl;
+	// if (!T.remove(in2))
+	// 	cout << char2 << " - not found." << endl;
+	// else
+	// 	cout << char2 << " - removed (one instance)." << endl;
 
-	cout << "Frequency table:  " << endl;
-	cout << T;
-	cout << endl;
+	// cout << "Frequency table:  " << endl;
+	// cout << T;
+	// cout << endl;
 
-
-	
 
 	return 0;
 }

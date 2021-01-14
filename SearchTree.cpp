@@ -368,16 +368,16 @@ void SearchTree::depthPrivate(Node *node, const Comparable &c1, int &depth) cons
 */
 int SearchTree::descendants(const Comparable &c1) const
 {
-    // int num = 0;
-    // descendantsPrivate(root, c1, num);
-    // return num;
 
     bool found = false;
     Node *nodeItem = retrievePrivate(root, c1, found);
-    int descendants;
+    int descendants = -1;
+
     if (nodeItem != nullptr)
     {
-        return descendantsPrivate(nodeItem) - 1;
+        descendants = descendantsPrivate(nodeItem) - 1;
+
+        return descendants;
     }
     else
     {
@@ -484,7 +484,7 @@ void SearchTree::removeRootPrivate()
     else
     {
         Node *ptr = root;
-        Comparable *item = root->item;
+        //Comparable *item = root->item;
         //Comparable smallRightsubTree;
 
         // no childern
@@ -526,13 +526,22 @@ void SearchTree::removeRootPrivate()
         } // continue to traverse
         else if (root->left != nullptr && root->right != nullptr)
         {
+            // Comparable *smallRT = smallestSubTreePrivate(root->right);
+            // Comparable *newSmrt = new Comparable(*smallRT);
+            // removePrivate(root, *smallRT, removed);
+            // root->item = newSmrt;
+
+            // newSmrt = nullptr;
+            // delete newSmrt;
+
+            // smallRT = nullptr;
+            // delete smallRT;
+
             Comparable *smallRT = smallestSubTreePrivate(root->right);
             Comparable *newSmrt = new Comparable(*smallRT);
             removePrivate(root, *smallRT, removed);
+            delete root->item;
             root->item = newSmrt;
-
-            newSmrt = nullptr;
-            delete newSmrt;
         }
     }
 }
@@ -583,7 +592,7 @@ void SearchTree::removeChildNodePrivate(Node *nodeP, Node *node, bool left)
     bool removed = false;
     Node *ptr;
     Comparable *smallRT;
-    Comparable *item = node->item;
+    //Comparable *item = node->item;
 
     // no children
     if (node->left == nullptr && node->right == nullptr)
@@ -655,9 +664,14 @@ void SearchTree::removeChildNodePrivate(Node *nodeP, Node *node, bool left)
         Comparable *smallRT = smallestSubTreePrivate(node->right);
         Comparable *newSmrt = new Comparable(*smallRT);
         removePrivate(node, *smallRT, removed);
+
+        delete node->item;
         node->item = newSmrt;
 
         newSmrt = nullptr;
         delete newSmrt;
+
+        smallRT = nullptr;
+        delete smallRT;
     }
 }
