@@ -97,12 +97,12 @@ int main()
 	// the syntax is a bit strange here, since the only ways to create new
 	// Comparables are using operator>> (and constructors supplied by the compiler)
 
-	string char1 = "3";
+	string char1 = "1";
 	Comparable in1;
 	stringstream s1(char1);
 	s1 >> in1;
 
-	string char2 = "6";
+	string char2 = "1";
 	Comparable in2;
 	stringstream s2(char2);
 	s2 >> in2;

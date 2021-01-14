@@ -456,6 +456,7 @@ void SearchTree::removePrivate(Node *nodeP, const Comparable &c1, bool &removed)
             if (*nodeP->right->item == c1)
             {
                 removeChildNodePrivate(nodeP, nodeP->right, false); // private helper to remove child
+                removed = true;
             }
             else
             {
@@ -529,6 +530,9 @@ void SearchTree::removeRootPrivate()
             Comparable *newSmrt = new Comparable(*smallRT);
             removePrivate(root, *smallRT, removed);
             root->item = newSmrt;
+
+            newSmrt = nullptr;
+            delete newSmrt;
         }
     }
 }
@@ -644,10 +648,16 @@ void SearchTree::removeChildNodePrivate(Node *nodeP, Node *node, bool left)
     } // two children nodes
     else if (node->left != nullptr && node->right != nullptr)
     {
-        cout << "got here = ";                                     //<< *smallRT << endl;
-        Comparable *smallRT = smallestSubTreePrivate(node->right); // get smallest in right subtree
-        cout << "smallRT = " << *smallRT << endl;
+        // cout << "TOMAS IS THE MAN = ";                                     //<< *smallRT << endl;
+        // Comparable *smallRT = smallestSubTreePrivate(node->right); // get smallest in right subtree
+        // removePrivate(node, *smallRT, removed);
+        // node->item = smallRT;
+        Comparable *smallRT = smallestSubTreePrivate(node->right);
+        Comparable *newSmrt = new Comparable(*smallRT);
         removePrivate(node, *smallRT, removed);
-        node->item = smallRT;
+        node->item = newSmrt;
+
+        newSmrt = nullptr;
+        delete newSmrt;
     }
 }
