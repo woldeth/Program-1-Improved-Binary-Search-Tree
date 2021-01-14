@@ -47,15 +47,11 @@ SearchTree::~SearchTree()
 */
 Node *SearchTree::copyPrivate(const Node *copyNode)
 {
-    // if node is empty return
+    // node is empty return
     if (copyNode == nullptr)
     {
         return nullptr;
     }
-
-    // Comparable *newItem = new Comparable;
-    // newItem->setItem(copyNode->item->getItem());
-    // Node *newNode = new Node(newItem);
 
     Comparable *newItem = new Comparable(*copyNode->item);
     Node *newNode = new Node(newItem);
@@ -109,7 +105,7 @@ void SearchTree::makeEmptyPrivate(Node *&node)
 */
 bool SearchTree::insert(Comparable *ptr)
 {
-    bool flag = false;
+    bool flag = false; // flag onces inserted
     insertPrivate(ptr, root, flag);
 
     return flag;
@@ -140,11 +136,11 @@ void SearchTree::insertPrivate(Comparable *ptr, Node *&node, bool &flag)
     }
     else if (*ptr < *(node->item))
     {
-        insertPrivate(ptr, node->left, flag);
+        insertPrivate(ptr, node->left, flag); // traverse left
     }
     else if (*ptr > *(node->item))
     {
-        insertPrivate(ptr, node->right, flag);
+        insertPrivate(ptr, node->right, flag); // traverse right
     }
 }
 
@@ -156,7 +152,7 @@ void SearchTree::insertPrivate(Comparable *ptr, Node *&node, bool &flag)
 */
 void SearchTree::inOrderPrivate(const Node *const &node) const
 {
-
+    // node is empty
     if (node == nullptr)
     {
         return;
@@ -164,7 +160,7 @@ void SearchTree::inOrderPrivate(const Node *const &node) const
 
     //inorder traversal
     inOrderPrivate(node->left);
-    cout << *node->item << " " << node->count << endl;
+    cout << *node->item << " " << node->count << endl; // prints out item and count
     inOrderPrivate(node->right);
 }
 
@@ -187,10 +183,11 @@ ostream &operator<<(ostream &output, const SearchTree &I)
 */
 SearchTree &SearchTree::operator=(const SearchTree &rhs)
 {
+    // checks to see if lhs and rhs is the same
     if (this != &rhs)
     {
-        this->makeEmpty(); // clear lhs
-        this->root = copyPrivate(rhs.root);
+        this->makeEmpty();                  // clear lhs
+        this->root = copyPrivate(rhs.root); // make a deep copy of the search tree
     }
 
     return *this;
@@ -219,16 +216,17 @@ bool SearchTree::operator==(const SearchTree &rhs)
 */
 void SearchTree::eePrivate(const Node *lhsNode, const Node *rhsNode, bool &sameTree)
 {
+    // less nodes in one than the other
     if (lhsNode == nullptr && rhsNode != nullptr)
     {
         sameTree = false;
     }
-
+    // less nodes in one than the other
     if (lhsNode != nullptr && rhsNode == nullptr)
     {
         sameTree = false;
     }
-
+    // base case
     if (lhsNode == nullptr || rhsNode == nullptr)
     {
         return;
@@ -237,18 +235,19 @@ void SearchTree::eePrivate(const Node *lhsNode, const Node *rhsNode, bool &sameT
     //inorder traversal
     eePrivate(lhsNode->left, rhsNode->left, sameTree);
 
+    // check if count is the same
     if (lhsNode->count != rhsNode->count)
     {
 
         sameTree = false;
     }
-    else if (*(lhsNode->item) != *(lhsNode->item))
+    else if (*(lhsNode->item) != *(lhsNode->item)) // check if the item is the same or not
     {
 
         sameTree = false;
     }
 
-    eePrivate(lhsNode->right, rhsNode->right, sameTree);
+    eePrivate(lhsNode->right, rhsNode->right, sameTree); // traverse
 }
 
 /** operator!=(const SearchTree &rhs)
@@ -259,7 +258,7 @@ void SearchTree::eePrivate(const Node *lhsNode, const Node *rhsNode, bool &sameT
 */
 bool SearchTree::operator!=(const SearchTree &rhs)
 {
-    return !(*this == rhs);
+    return !(*this == rhs); // uses the == operater
 }
 
 /** retrieve(const Comparable &c1)
@@ -274,7 +273,7 @@ const Comparable *SearchTree::retrieve(const Comparable &c1) const
 
     Node *ptr = retrievePrivate(root, c1, found);
 
-    if (found)
+    if (found == true)
     {
         return ptr->item;
     }
@@ -292,17 +291,20 @@ const Comparable *SearchTree::retrieve(const Comparable &c1) const
 */
 Node *SearchTree::retrievePrivate(Node *node, const Comparable &c1, bool &found) const
 {
+    //base case
     if (node == nullptr)
     {
         return node;
     }
 
+    //checks if item is the same
     if (*node->item == c1)
     {
         found = true;
         return node;
     }
 
+    // determine to check left or right subtree
     if (*node->item < c1)
     {
         return retrievePrivate(node->right, c1, found);
@@ -334,17 +336,20 @@ int SearchTree::depth(const Comparable &c1) const
 */
 void SearchTree::depthPrivate(Node *node, const Comparable &c1, int &depth) const
 {
+    // Node is not found
     if (node == nullptr)
     {
         depth = -1;
         return;
     }
 
+    //base case
     if (*node->item == c1)
     {
         return;
     }
 
+    // determines if comparable is less than for traversal
     if (*node->item < c1)
     {
         depth = depth + 1;
@@ -378,12 +383,14 @@ int SearchTree::descendants(const Comparable &c1) const
 */
 void SearchTree::descendantsPrivate(Node *node, const Comparable &c1, int &num) const
 {
+    //Comparable is not found
     if (node == nullptr)
     {
         num = -1;
         return;
     }
 
+    //comparable is found check if there are children nodes
     if (*node->item == c1)
     {
         if (node->left && node->right)
@@ -402,6 +409,7 @@ void SearchTree::descendantsPrivate(Node *node, const Comparable &c1, int &num) 
         return;
     }
 
+    // traversal either left or right based on comparable
     if (*node->item < c1)
     {
         return descendantsPrivate(node->right, c1, num);
@@ -434,38 +442,41 @@ bool SearchTree::remove(const Comparable &c1)
 */
 void SearchTree::removePrivate(Node *nodeP, const Comparable &c1, bool &removed)
 {
+    //check if there is a root
     if (root != nullptr)
     {
+        //if item is in root
         if (*root->item == c1)
         {
-            removeRootPrivate();
+            removeRootPrivate(); // private helper function to remove root
             removed = true;
             return;
         }
 
+        // item is less then parent and left child has a node
         if (c1 < *nodeP->item && nodeP->left != nullptr)
         {
-
+            //check to see if left child is the item
             if (*nodeP->left->item == c1)
             {
-                removeChildNodePrivate(nodeP, nodeP->left, true);
+                removeChildNodePrivate(nodeP, nodeP->left, true); // private helper to remove child
                 removed = true;
             }
             else
             {
-                removePrivate(nodeP->left, c1, removed);
+                removePrivate(nodeP->left, c1, removed); // keep traversing left
             }
-        }
+        } // item is greater than current parent and right node is available
         else if (c1 > *nodeP->item && nodeP->right != nullptr)
         {
-
+            // check to see if right is the same as item
             if (*nodeP->right->item == c1)
             {
-                removeChildNodePrivate(nodeP, nodeP->right, false);
+                removeChildNodePrivate(nodeP, nodeP->right, false); // private helper to remove child
             }
             else
             {
-                removePrivate(nodeP->right, c1, removed);
+                removePrivate(nodeP->right, c1, removed); // keep traversing right
             }
         }
     }
@@ -480,6 +491,7 @@ void SearchTree::removeRootPrivate()
 {
     bool removed = false;
 
+    // deincrement if there is more than 1 instance 
     if (root->count > 1)
     {
         root->count = root->count - 1;
@@ -487,9 +499,10 @@ void SearchTree::removeRootPrivate()
     }
     else
     {
-        Node *ptr = root;
+        Node *ptr = root;               
         Comparable *item = root->item;
 
+        // no childern
         if (root->left == nullptr && root->right == nullptr)
         {
             //root = nullptr;
@@ -499,19 +512,30 @@ void SearchTree::removeRootPrivate()
 
             delete ptr;
             root = nullptr;
-        }
+
+        }// one child rhs
         else if (root->left == nullptr && root->right != nullptr)
         {
             root = root->right;
+
+            delete ptr->item;
+            ptr->item = nullptr;
+
             delete ptr;
             ptr = nullptr;
-        }
+
+        } //one child lhs
         else if (root->left != nullptr && root->right == nullptr)
         {
             root = root->left;
+
+            delete ptr->item;
+            ptr->item = nullptr;
+
             delete ptr;
             ptr = nullptr;
-        }
+
+        }// continue to traverse
         else if (root->left != nullptr && root->right != nullptr)
         {
             Comparable *smallRT = smallestSubTreePrivate(root->right);
@@ -521,15 +545,15 @@ void SearchTree::removeRootPrivate()
     }
 }
 
-/** smallestSubTree()
- * @brief   iterates to the smallest node in subtree
- * @pre     Smallest node comparable is unknown in tree
- * @post    Finds the smallest node and returns the comparable to that ndoe
-*/
-Comparable *SearchTree::smallestSubTree()
-{
-    return smallestSubTreePrivate(root);
-}
+// /** smallestSubTree()
+//  * @brief   iterates to the smallest node in subtree
+//  * @pre     Smallest node comparable is unknown in tree
+//  * @post    Finds the smallest node and returns the comparable to that ndoe
+// */
+// Comparable *SearchTree::smallestSubTree()
+// {
+//     return smallestSubTreePrivate(root);
+// }
 
 /** smallestSubTreePrivate(Node *node)
  * @brief   iterates to the smallest node in subtree
@@ -539,18 +563,19 @@ Comparable *SearchTree::smallestSubTree()
 */
 Comparable *SearchTree::smallestSubTreePrivate(Node *node)
 {
+    // base case
     if (root == nullptr)
     {
         return nullptr;
     }
     else
-    {
+    {   // continue to move to the left
         if (node->left != nullptr)
         {
             return smallestSubTreePrivate(node->left);
         }
         else
-        {
+        {   // return the smallest item
             return node->item;
         }
     }
@@ -565,16 +590,19 @@ Comparable *SearchTree::smallestSubTreePrivate(Node *node)
 */
 void SearchTree::removeChildNodePrivate(Node *nodeP, Node *node, bool left)
 {
+    // deincrement the node 
     if (node->count > 1)
     {
         node->count = node->count - 1;
         return;
     }
+
     bool removed = false;
     Node *ptr;
     Comparable *smallRT;
     Comparable *item = node->item;
 
+    // no children 
     if (node->left == nullptr && node->right == nullptr)
     {
         ptr = node;
@@ -592,7 +620,7 @@ void SearchTree::removeChildNodePrivate(Node *nodeP, Node *node, bool left)
 
         delete ptr;
         ptr = nullptr;
-    }
+    } // one child on rhs
     else if (node->left == nullptr && node->right != nullptr)
     {
         if (left)
@@ -612,7 +640,8 @@ void SearchTree::removeChildNodePrivate(Node *nodeP, Node *node, bool left)
 
         delete ptr;
         ptr = nullptr;
-    }
+
+    } // one child on lhs
     else if (node->left != nullptr && node->right == nullptr)
     {
         if (left)
@@ -632,10 +661,11 @@ void SearchTree::removeChildNodePrivate(Node *nodeP, Node *node, bool left)
 
         delete ptr;
         ptr = nullptr;
-    }
+
+    }// two children nodes
     else if (node->left != nullptr && node->right != nullptr)
     {
-        Comparable *smallRT = smallestSubTreePrivate(node->right);
+        Comparable *smallRT = smallestSubTreePrivate(node->right); // get smallest in right subtree
         removePrivate(node, *smallRT, removed);
         node->item = smallRT;
     }
